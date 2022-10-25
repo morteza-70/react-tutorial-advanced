@@ -16,7 +16,7 @@ class Users extends Component {
     render() {
         return (
             <>
-                <button onClick={this.handleCreate} className='btn btn-primary btn-larg'>
+                <button onClick={this.handleCreate(user)} className='btn btn-primary btn-larg'>
                     Create
                 </button>
                 <div className='row text-center p-5'>
@@ -35,10 +35,10 @@ class Users extends Component {
                                     <h5>{user.email}</h5>
                                     <div className='row'>
                                         <div className='col-6'>
-                                            <button onClick={this.handleUpdate} className='btn btn-success btn-primary'>Update</button>
+                                            <button onClick={this.handleUpdate(user)} className='btn btn-success btn-primary'>Update</button>
                                         </div>
                                         <div className='col-6'>
-                                            <button onClick={this.handleDelete} className='btn btn-danger btn-primary'>Delete</button>
+                                            <button onClick={this.handleDelete(user)} className='btn btn-danger btn-primary'>Delete</button>
                                         </div>
                                     </div>
                                 </div>
@@ -50,15 +50,15 @@ class Users extends Component {
         );
     }
 
-    handleCreate = () => {
+    handleCreate = (user) => {
 
     }
 
-    handleUpdate = () => {
+    handleUpdate = (user) => {
         
     }
 
-    handleDelete = () => {
+    handleDelete = (user) => {
         
     }
 
