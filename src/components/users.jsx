@@ -10,13 +10,12 @@ class Users extends Component {
 
     async componentDidMount() {
         const response = await axios.get('https://reqres.in/api/users');
-        // this.setState({users: response.data.data, isLoading: false});
-        setTimeout({users: response.data.data, isLoading: false}, 3000);
+        this.setState({users: response.data.data, isLoading: false});
     }
     render() {
         return (
             <>
-                <button onClick={this.handleCreate(user)} className='btn btn-primary btn-larg'>
+                <button onClick={this.handleCreate} className='btn btn-primary btn-larg'>
                     Create
                 </button>
                 <div className='row text-center p-5'>
@@ -35,10 +34,10 @@ class Users extends Component {
                                     <h5>{user.email}</h5>
                                     <div className='row'>
                                         <div className='col-6'>
-                                            <button onClick={this.handleUpdate(user)} className='btn btn-success btn-primary'>Update</button>
+                                            <button onClick={()=>this.handleUpdate(user)} className='btn btn-success btn-primary'>Update</button>
                                         </div>
                                         <div className='col-6'>
-                                            <button onClick={this.handleDelete(user)} className='btn btn-danger btn-primary'>Delete</button>
+                                            <button onClick={()=>this.handleDelete(user)} className='btn btn-danger btn-primary'>Delete</button>
                                         </div>
                                     </div>
                                 </div>
@@ -50,18 +49,30 @@ class Users extends Component {
         );
     }
 
-    handleCreate = (user) => {
-
-    }
-
-    handleUpdate = (user) => {
+    handleCreate = async () => {
+        const newUser = {
+                email: 'morteza@gmail.com',
+                first_name: 'Morteza',
+                last_name: 'Torkashvand',
+                avatar: 'https://reqres.in/img/faces/5-image.jpg',
+        };
         
-    }
+        const response = await axios.post('https://reqres.in/api/users', newUser);
+        this.setState({users: [...this.state.users, newUser]});
+    };
 
-    handleDelete = (user) => {
-        
+    handleUpdate = async (user) => {
+        user.first_name = 'Updated';
+        const response = await axios.put(`https://reqres.in/api/users/${user.id}`, user);
+        const updatedUsers = [...this.state.users];
+        const index = updatedUsers.indexOf[user];
+        updatedUsers[index] = {...user};
+        this.setState({users: updatedUsers});
     }
-
+    handleDelete = async (user) => {
+        const response = await axios.delete(`https://reqres.in/api/users/${user.id}`, user);
+    };
 }
 
 export default Users;
+
