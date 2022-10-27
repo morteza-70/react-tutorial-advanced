@@ -57,20 +57,22 @@ class Users extends Component {
                 avatar: 'https://reqres.in/img/faces/5-image.jpg',
         };
         
-        const response = await axios.post('https://reqres.in/api/users', newUser);
+        await axios.post('https://reqres.in/api/users', newUser);
         this.setState({users: [...this.state.users, newUser]});
     };
 
     handleUpdate = async (user) => {
         user.first_name = 'Updated';
-        const response = await axios.put(`https://reqres.in/api/users/${user.id}`, user);
+        await axios.put(`https://reqres.in/api/users/${user.id}`, user);
         const updatedUsers = [...this.state.users];
         const index = updatedUsers.indexOf[user];
         updatedUsers[index] = {...user};
         this.setState({users: updatedUsers});
     }
     handleDelete = async (user) => {
-        const response = await axios.delete(`https://reqres.in/api/users/${user.id}`, user);
+        await axios.delete(`https://reqres.in/api/users/${user.id}`, user);
+        const newUsers = this.state.users.filter((p) => p.id !== user.id);
+        this.setState({users: newUsers});
     };
 }
 
