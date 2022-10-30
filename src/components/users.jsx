@@ -71,7 +71,7 @@ class Users extends Component {
     }
     handleDelete = async (user) => {
         await axios.delete(`https://reqres.in/api/users/${user.id}`, user);
-        const newUsers = this.state.users.filter((p) => p.id !== user.id);
+        const newUsers = this.state.users.filter((u) => u.id !== user.id);
         this.setState({users: newUsers});
     };
 }

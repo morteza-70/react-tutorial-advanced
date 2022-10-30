@@ -14,10 +14,10 @@ class App extends Component {
 				<Navbar/>
 				<div className='container mt-3'>
 					<Routes>
-						<Route path='/users' element={<Users/>} />
-						<Route path='/login' element={<Login/>} />
-						<Route path='/register' element={<Register/>} />
-						<Route path='/' element={<Home/>} />
+						<Route path='/users' element={<Users />} />
+						<Route path='/login' element={<Login />} />
+						<Route path='/register' element={<Register />} />
+						<Route path='/' element={<Home />} />
 					</Routes>
 				</div>
 			</>
