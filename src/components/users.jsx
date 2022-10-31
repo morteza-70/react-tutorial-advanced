@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import LoadingUsers from './loading/loadingUsers';
+import { Link } from 'react-router-dom';
 
 class Users extends Component {
     state ={
@@ -30,7 +31,9 @@ class Users extends Component {
                                         style={{borderRadius: '50%', width: '100px'}}
                                         alt=""
                                     />
-                                    <h4>{user.first_name} {user.last_name}</h4>
+                                    <Link to={`user`}>
+                                        <h4>{user.first_name} {user.last_name}</h4>
+                                    </Link>
                                     <h5>{user.email}</h5>
                                     <div className='row'>
                                         <div className='col-6'>
@@ -70,7 +73,7 @@ class Users extends Component {
         this.setState({users: updatedUsers});
     }
     handleDelete = async (user) => {
-        await axios.delete(`https://reqres.in/api/users/${user.id}`, user);
+        await axios.delete(`https://reqres.in/api/users/${user.id}`);
         const newUsers = this.state.users.filter((u) => u.id !== user.id);
         this.setState({users: newUsers});
     };
