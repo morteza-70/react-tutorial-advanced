@@ -31,7 +31,7 @@ class Users extends Component {
                                         style={{borderRadius: '50%', width: '100px'}}
                                         alt=""
                                     />
-                                    <Link to={`user`}>
+                                    <Link to={`/users/${user.id}`}>
                                         <h4>{user.first_name} {user.last_name}</h4>
                                     </Link>
                                     <h5>{user.email}</h5>

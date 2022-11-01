@@ -7,7 +7,6 @@ import Login from './components/login';
 import Register from './components/register';
 import {Route, Routes} from 'react-router-dom';
 
-
 class App extends Component {
   render() {
 		return (
