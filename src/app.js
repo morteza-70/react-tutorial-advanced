@@ -16,7 +16,9 @@ class App extends Component {
 					<Routes>
 						<Route path='/users/:id' element={<User/>} />
 						<Route path='/users' element={<Users/>} />
-						<Route path='/login' element={<Login />} />
+						<Route path='/login' element={<Login />} >
+							 <Route path='/login/:timestamp' element={<Login />} />  {/*for optional params */}
+						</Route>
 						<Route path='/register' element={<Register />} />
 						<Route path='/' element={<Home />} />
 					</Routes>
