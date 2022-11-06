@@ -1,10 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import {useLocation} from "react-router-dom";
+
 
 function User() {
     const [user, setUser] = useState({});
     const { id } = useParams();
+
+    const search = useLocation().search;
+    const name = new URLSearchParams(search).get('s');
+    console.log(name);
 
     useEffect(() =>{
         async function fetchUser() {
