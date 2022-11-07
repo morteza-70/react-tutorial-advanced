@@ -5,7 +5,8 @@ import Users from './components/users';
 import User from './components/user';
 import Login from './components/login';
 import Register from './components/register';
-import {Route, Routes} from 'react-router-dom';
+import NotFound from './components/notFound'
+import {Route, Routes, Navigate} from 'react-router-dom';
 
 class App extends Component {
   render() {
@@ -21,6 +22,9 @@ class App extends Component {
 						</Route>
 						<Route path='/register' element={<Register />} />
 						<Route path='/' element={<Home />} />
+						<Route path='/notFound' element={<NotFound />} />
+						<Route path="*" element={<Navigate to ="/notFound" />}/>  {/*for redirect */}
+						<Route path="morteza" element={<Navigate to ="/users" />}/>  {/*for redirect morteza to users */}
 					</Routes>
 				</div>
 			</>

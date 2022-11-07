@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {useLocation} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function User() {
@@ -9,8 +10,10 @@ function User() {
     const { id } = useParams();
 
     const search = useLocation().search;
-    const name = new URLSearchParams(search).get('s');
+    const name = new URLSearchParams(search).get('order');
     console.log(name);
+
+    const navigate = useNavigate();
 
     useEffect(() =>{
         async function fetchUser() {
@@ -39,6 +42,7 @@ function User() {
                     </div>
                 </div>
             </div>
+            <button onClick={()=> navigate("/users")} className='btn btn-info mt-3'>Users</button>
         </>
     )
 }
