@@ -29,19 +29,21 @@ class Login extends Component {
 										<button className="btn btn-info btn-lg btn-block" type="button">Login</button>
 									</div>
 
-									<p className="small mb-5 pb-lg-2"><a className="text-muted" href="#!">Forgot password?</a></p>
-									<p>Don't have an account? <a href="#!" className="link-info">Register here</a></p>
+									{/* <p className="small mb-5 pb-lg-2"><a className="text-muted" href="#!">Forgot password?</a></p>
+									<p>Don't have an account? <a href="#!" className="link-info">Register here</a></p> */}
 
 								</form>
 							</div>
 						</div>
 						<div className="col-sm-6 px-0 d-none d-sm-block">
-							<img src={'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img3.webp'}
-							alt="Login image" className="w-100 vh-100" 
-							style={{
-								objectFit: 'cover',
-								objectPosition: 'left',
-							}}/>
+							<input type="image" img
+								src={`https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img3.webp`}
+								alt="Login image" className="w-100 vh-100" 
+								style={{
+									objectFit: 'cover',
+									objectPosition: 'left',
+								}}
+							/>
 						</div>
 					</div>
 				</div>
