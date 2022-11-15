@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {useLocation} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 
 function User() {
     const [user, setUser] = useState({});
     const { id } = useParams();
+    const fullName = useRef(null);
 
     const search = useLocation().search;
     const name = new URLSearchParams(search).get('order');
@@ -21,6 +23,7 @@ function User() {
             setUser(data.data);
         }
         fetchUser();
+        console.log(fullName.current);
     },[id]);
 
     return (
@@ -31,8 +34,12 @@ function User() {
                     style={{borderRadius: '50%', width: '100px'}}
                     alt=""
                 />
-                <h4>{user.first_name} {user.last_name}</h4>
-                <h5>{user.email}</h5>
+                <h4 ref={fullName}>
+                    {user.first_name} {user.last_name}
+                </h4>
+                <h5>
+                    {user.email}
+                </h5>
                 <div className='row'>
                     <div className='col-6'>
                         <button onClick={()=>this.handleUpdate(user)} className='btn btn-success btn-primary'>Update</button>
