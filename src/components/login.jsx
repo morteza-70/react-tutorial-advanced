@@ -1,30 +1,42 @@
-import axios from 'axios';
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 class Login extends Component {
 
-	email = createRef();
-	password = createRef();
+	// login with ref module
+	// email = createRef();
+	// password = createRef();
 
-	handleSubmit = async (e) => {
-		e.preventDefault();
-		console.log('Email:', this.email.current.value);  //current is Element and value is value input
-		console.log('Password:', this.password.current.value);
-		const account = {email: this.email.current.value, password: this.password.current.value};
-		const response = await axios.post(`https://reqres.in/api/login`, account);
-		console.log(response);
+	// handleSubmit = async (e) => {
+	// 	e.preventDefault();
+	// 	const account = {email: this.email.current.value, password: this.password.current.value}; //current is Element and value is value input
+	// 	const response = await axios.post(`https://reqres.in/api/login`, account);
+	// 	console.log(response);
+	// };
+
+	state = {
+		account: {
+			email:'',
+			password: '',
+		}
+	};
+
+	handleChange = async ({currentTarget:input}) => {
+		const account = {...this.state.account};
+		account[input.name] = input.value;
+		this.setState({account});
 	};
 
 	render() {
+		const {email, password} = this.state.account;
 		return (
 			<form onSubmit={this.handleSubmit} style={{width: '23rem'}}>
 				<h3 className="fw-normal mb-3 pb-3" style={{letterSpacing: '1px'}}>Log in</h3>
 				<div className="form-outline mb-4">
-				<input ref={this.email} type="email" id="form2Example18" className="form-control form-control-lg" />
+				<input onChange={this.handleChange} value={email} type="email" id="form2Example18" name='email' className="form-control form-control-lg" />
 				<label className="form-label" htmlFor="form2Example18">Email address</label>
 				</div>
 
 				<div className="form-outline mb-4">
-					<input ref={this.password} type="password" id="form2Example28" className="form-control form-control-lg" />
+					<input onChange={this.handleChange} value={password} type="password" id="form2Example28" name='password' className="form-control form-control-lg" />
 					<label className="form-label" htmlFor="form2Example28">Password</label>
 				</div>
 

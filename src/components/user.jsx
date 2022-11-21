@@ -9,7 +9,7 @@ import { useRef } from "react";
 function User() {
     const [user, setUser] = useState({});
     const { id } = useParams();
-    const fullName = useRef(null);
+    const fullName = useRef({});
 
     const search = useLocation().search;
     const name = new URLSearchParams(search).get('order');
@@ -23,7 +23,7 @@ function User() {
             setUser(data.data);
         }
         fetchUser();
-        console.log(fullName.current);
+        console.log(fullName.current); //current is Element and value is value input
     },[id]);
 
     return (
