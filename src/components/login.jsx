@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Input from './input';
 class Login extends Component {
 
 	// login with ref module
@@ -29,17 +30,9 @@ class Login extends Component {
 		const {email, password} = this.state.account;
 		return (
 			<form onSubmit={this.handleSubmit} style={{width: '23rem'}}>
-				<h3 className="fw-normal mb-3 pb-3" style={{letterSpacing: '1px'}}>Log in</h3>
-				<div className="form-outline mb-4">
-				<input onChange={this.handleChange} value={email} type="email" id="form2Example18" name='email' className="form-control form-control-lg" />
-				<label className="form-label" htmlFor="form2Example18">Email address</label>
-				</div>
-
-				<div className="form-outline mb-4">
-					<input onChange={this.handleChange} value={password} type="password" id="form2Example28" name='password' className="form-control form-control-lg" />
-					<label className="form-label" htmlFor="form2Example28">Password</label>
-				</div>
-
+				<h3 className="fw-normal mb-3 pb-3" style={{letterSpacing: '1px'}}>Log in</h3>				
+				<Input onChange={this.handleChange} value={email} name="email" label="Email Address:"/>
+				<Input onChange={this.handleChange} value={password} name="password" label="Password:"/>
 				<div className="pt-1 mb-4">
 					<button className="btn btn-info btn-lg btn-block">Login</button>
 				</div>
