@@ -10,6 +10,7 @@ class Login extends Component {
 			password: '',
 		},
 		errors:[],
+		sending: false,
 	};
 
 	schema = yup.object().shape({
@@ -35,8 +36,15 @@ class Login extends Component {
 		const result = await this.validate();
 		console.log(result);
 		if (result) {
-			const response = await axios.post('https://reqres.in/api/login', result);
-			console.log(response);
+			try {		
+				this.setState({sending: true});		
+				const response = await axios.post('https://reqres.in/api/login', result);
+				this.setState({sending: false});	
+				console.log(response);
+			} catch (error) {
+				this.setState({sending: false});	
+				this.setState({errors: ['ایمیل یا پسورد صحیح نمی باشد']});
+			}
 		}
 	};
 
@@ -66,7 +74,13 @@ class Login extends Component {
 					<Input onChange={this.handleChange} value={email} name="email" label="Email Address:"/>
 					<Input onChange={this.handleChange} value={password} name="password" label="Password:"/>
 					<div className="pt-1 mb-4">
-						<button className="btn btn-info btn-lg btn-block">Login</button>
+						<button disabled={this.state.sending} className="btn btn-info btn-lg btn-block">Login
+							{
+								this.state.sending &&
+								<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+								// <span class="sr-only"> ...</span>
+							}
+						</button>
 					</div>
 				</form>
 			</>
