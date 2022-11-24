@@ -14,10 +14,12 @@ class Login extends Component {
 	};
 
 	schema = yup.object().shape({
-		email: yup.string()
+		email: 
+			yup.string()
 			.email('فرمت ایمیل صحیح نمی باشد')
 			.required('ایمیل الزامی می باشد'),
-		password: yup.string()
+		password: 
+			yup.string()
 			.required('پسورد الزامی می باشد')
 			.min(4, 'پسورد باید حداقل 4 کاراکتر باشد'),
 	});
@@ -69,7 +71,7 @@ class Login extends Component {
 						</div>
 					)
 				}
-				<form onSubmit={this.handleSubmit} style={{width: '23rem'}}>
+				<form onSubmit={this.handleSubmit}>
 					<h3 className="fw-normal mb-3 pb-3" style={{letterSpacing: '1px'}}>Log in</h3>				
 					<Input onChange={this.handleChange} value={email} name="email" label="Email Address:"/>
 					<Input onChange={this.handleChange} value={password} name="password" label="Password:"/>
