@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Input from './input';
 import * as yup from 'yup';
 import axios from 'axios';
+import { Navigate } from "react-router-dom";
 class Login extends Component {
 
 	state = {
@@ -40,9 +41,9 @@ class Login extends Component {
 		if (result) {
 			try {		
 				this.setState({sending: true});		
-				const response = await axios.post('https://reqres.in/api/login', result);
-				this.setState({sending: false});	
-				console.log(response);
+				const response = await axios.post('https://reqres.in/api/login', result);				
+				localStorage.setItem('token', response.data.token);
+				this.setState({sending: false});
 			} catch (error) {
 				this.setState({sending: false});	
 				this.setState({errors: ['ایمیل یا پسورد صحیح نمی باشد']});
@@ -64,13 +65,16 @@ class Login extends Component {
 					this.state.errors.length !== 0 && (
 						<div className='alert alert-danger'>
 							<ul>
-								{
+						        {
 									this.state.errors.map((e,i) => <li key={i}>{e}</li>)
 								}
 							</ul>
 						</div>
 					)
 				}
+				{localStorage.token  && (
+					<Navigate to="/dashboard" replace={true} />
+        		)}
 				<form onSubmit={this.handleSubmit}>
 					<h3 className="fw-normal mb-3 pb-3" style={{letterSpacing: '1px'}}>Log in</h3>				
 					<Input onChange={this.handleChange} value={email} name="email" label="Email Address:"/>

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import {Route, Routes, Navigate} from 'react-router-dom';
 import Navbar from './components/navbar';
 import Home from './components/home';
 import Users from './components/users';
 import User from './components/user';
 import Login from './components/login';
 import Register from './components/register';
-import NotFound from './components/notFound'
-import {Route, Routes, Navigate} from 'react-router-dom';
+import NotFound from './components/notFound';
+import Dashboard from './components/dashboard';
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
 							 <Route path='/login/:timestamp' element={<Login />} />  {/*for optional params */}
 						</Route>
 						<Route path='/register' element={<Register />} />
+						<Route path='/dashboard' element={<Dashboard />} />
 						<Route path='/' element={<Home />} />
 						<Route path='/notFound' element={<NotFound />} />
 						<Route path="*" element={<Navigate to ="/notFound" />}/>  {/*for redirect */}
