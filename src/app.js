@@ -15,7 +15,7 @@ class App extends Component {
 		user:null,
 	};
 
-	componentDidMount() {
+	componentDidMount() {  //run  when create component
 		const token = localStorage.getItem('token');
 		if (!token) {
 			this.setState({user: null});
@@ -27,22 +27,21 @@ class App extends Component {
 				user: {
 					emil: 'morteza@gmail.com',
 					name: 'morteza'
-				},
+				}
 			}
 		}
 	
 		if (!response.data.user) {
-			this.setState({user: this.data.user});
+			this.setState({user: this.response.data.user});
 			return;
 		};
 		this.setState({user:response.data.user});
 	};
 
-    render() {
-		
+    render() {		
 		return (
 			<>
-				<Navbar/>
+				<Navbar user={this.state.user}/>
 				<div className='container mt-3'>
 					<Routes>
 						<Route path='/users/:id' element={<User/>} />

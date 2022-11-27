@@ -43,7 +43,7 @@ class Login extends Component {
 				this.setState({sending: true});		
 				const response = await axios.post('https://reqres.in/api/login', result);				
 				localStorage.setItem('token', response.data.token);
-				window.location('/dashboard');
+				window.location = '/dashboard';
 				this.setState({sending: false});
 			} catch (error) {
 				this.setState({sending: false});	
