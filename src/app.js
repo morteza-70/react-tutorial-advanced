@@ -11,55 +11,55 @@ import Dashboard from './components/dashboard';
 import Logout from './components/logout';
 
 class App extends Component {
-	state = {
-		user:null,
-	};
+    state = {
+        user:null,
+    };
 
-	componentDidMount() {  //run  when create component
-		const token = localStorage.getItem('token');
-		if (!token) {
-			this.setState({user: null});
-			return;
-		}
-		// const response = await axios.post('https://reqres.in/api/userbytoken', {token});  // comment beacuse api is fake
-		const response = {
-			data : {
-				user: {
-					emil: 'morteza@gmail.com',
-					name: 'morteza'
-				}
-			}
-		}
-	
-		if (!response.data.user) {
-			this.setState({user: this.response.data.user});
-			return;
-		};
-		this.setState({user:response.data.user});
-	};
+    componentDidMount() {  //run  when create component
+        const token = localStorage.getItem('token');
+        if (!token) {
+            this.setState({user: null});
+            return;
+        }
+        // const response = await axios.post('https://reqres.in/api/userbytoken', {token});  // comment beacuse api is fake
+        const response = {
+            data : {
+                user: {
+                    emil: 'morteza@gmail.com',
+                    name: 'morteza'
+                }
+            }
+        }
+    
+        if (!response.data.user) {
+            this.setState({user: this.response.data.user});
+            return;
+        };
+        this.setState({user:response.data.user});
+    };
 
     render() {		
-		return (
-			<>
-				<Navbar user={this.state.user}/>
-				<div className='container mt-3'>
-					<Routes>
-						<Route path='/users/:id' element={<User/>} />
-						<Route path='/users' element={<Users/>} />
-						<Route path='/login' element={<Login />} >
-							<Route path='/login/:timestamp' element={<Login />} />  {/*for optional params */}
-						</Route>
-						<Route path='/logout' element={<Logout />} />
-						<Route path='/register' element={<Register />} />
-						<Route path='/dashboard' element={<Dashboard />} />
-						<Route path='/' element={<Home />} />
-						<Route path='/notFound' element={<NotFound />} />
-						<Route path="*" element={<Navigate to ="/notFound" />}/>  {/*for redirect */}
-						<Route path="morteza" element={<Navigate to ="/users" />}/>  {/*for redirect morteza to users */}
-					</Routes>
-				</div>
-			</>
-		)
+        return (
+            <>
+                <Navbar user={this.state.user}/>
+                <div className='container mt-3'>
+                    <Routes>
+                        <Route path='/users/:id' element={<User/>} />
+                        <Route path='/users' element={<Users/>} />
+                        <Route path='/login' element={<Login />} >
+                            <Route path='/login/:timestamp' element={<Login />} />  {/*for optional params */}
+                        </Route>
+                        <Route path='/logout' element={<Logout />} />
+                        <Route path='/register'  element={<Register />}/>
+                        <Route path='/dashboard' element={<Dashboard user={this.state.user} />} />
+                        <Route path='/' element={<Home />} />
+                        <Route path='/notFound' element={<NotFound />} />
+                        <Route path="*" element={<Navigate to ="/notFound" />}/>  {/*for redirect */}
+                        <Route path="morteza" element={<Navigate to ="/users" />}/>  {/*for redirect morteza to users */}
+                    </Routes>
+                </div>
+            </>
+        )
    }
 }
 
