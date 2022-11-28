@@ -17,10 +17,10 @@ class Navbar extends Component {
 						{ !this.props.user ? (
 							<>
 								<li className="nav-item">
-								<NavLink className="nav-link" to="/login">Login</NavLink>
+									<NavLink className="nav-link" to="/register">Register</NavLink>
 								</li>
 								<li className="nav-item">
-									<NavLink className="nav-link" to="/register">Register</NavLink>
+									<NavLink className="nav-link" to="/login">Login</NavLink>
 								</li>
 							</>
 							):(
@@ -29,7 +29,7 @@ class Navbar extends Component {
 										<NavLink className="nav-link" to="/dashboard">Dashboard</NavLink>
 									</li>
 									<li className="nav-item">
-									<NavLink className="nav-link" to="/logout">Logout</NavLink>
+										<NavLink className="nav-link" to="/logout">Logout</NavLink>
 									</li>
 								</>
 							)
